@@ -129,3 +129,44 @@ calculateTax7(10_000)
 
 calculateTax7(10_000, 2023)
 // overwrites 2022 with 2023
+
+// <===OBJECTS===>
+
+let employee = { id: 1 };
+
+// employee.name = 'Andi';
+// would work in JS, but doesn't in TS because the TS compiler assumes the value to be a number, not a string
+
+let employee2: {
+    id: number,
+    name:string
+} = { id: 1, name: 'Andi' }
+
+// fixed it :-), empty string works too, if you don't want to declare it now
+
+// with this syntax you can change the values anytime, which may be unwanted
+//fix this by adding the readonly property before the values
+
+let employee3: {
+    readonly id: number,
+    readonly name:string
+} = { id: 1, name: 'Andi' }
+
+// employee3.name = 'affe'; wouldn't work anymore
+
+// methods inside objects:
+
+let employee4: {
+    readonly id: number,
+    readonly name: string,
+    retire: (date: Date) => void;
+    // you could return something else, of course but you have to add the retire to the declaration in either case
+} = {
+    id: 1,
+    name: 'Andi',
+    retire: (date: Date) => {
+        console.log(date)
+    }
+}
+
+// kinda messy code

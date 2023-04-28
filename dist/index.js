@@ -51,4 +51,30 @@ function calculateTax7(income, taxYear = 2022) {
 }
 calculateTax7(10000);
 calculateTax7(10000, 2023);
+let employee = { id: 1 };
+let employee2 = { id: 1, name: 'Andi' };
+let employee3 = { id: 1, name: 'Andi' };
+let employee4 = {
+    id: 1,
+    name: 'Andi',
+    retire: (date) => {
+        console.log(date);
+    }
+};
+let employee5 = {
+    id: 1,
+    name: 'Andi',
+    retire: (date) => {
+        console.log(date);
+    }
+};
+function kgToLbs(weight) {
+    if (typeof weight === 'number')
+        return weight * 2.2;
+    else {
+        return parseInt(weight) * 2.2;
+    }
+}
+kgToLbs(10);
+kgToLbs('10kg');
 //# sourceMappingURL=index.js.map

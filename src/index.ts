@@ -169,4 +169,81 @@ let employee4: {
     }
 }
 
-// kinda messy code
+// kinda messy code structure + if you want to create another employee, you'd have to repeat the verbose code, which is annoying, especially when the other employee object has new properties
+// solution:
+
+// <===TYPE ALIAS===>
+
+type Employee = {
+    readonly id: number,
+    readonly name: string,
+    retire: (date: Date) => void;
+}
+
+let employee5: {
+} = {
+    id: 1,
+    name: 'Andi',
+    retire: (date: Date) => {
+        console.log(date)
+    }
+}
+
+// now you can reuse the employee{} in multiple places
+
+// <===UNION===>
+
+function kgToLbs(weight: number | string) {
+    // that's the union type number | string
+
+    //narrowing:
+    if (typeof weight === 'number')
+        return weight * 2.2;
+    else {
+        // conversion to integer required before usage
+        return parseInt(weight) * 2.2;
+    }
+}
+
+kgToLbs(10);
+kgToLbs('10kg');
+
+// <===INTERSECTION===>
+
+// when something has 2 properties simultaneously
+// let weight: number & string;
+// technically impossible for string and number, of course
+
+type Draggable = {
+    drag: () => void;
+};
+
+type Resizable = {
+    resize: () => void
+};
+
+// combine them in a new type
+
+type UIWidget = Draggable & Resizable;
+
+// to call the new Intersection:
+
+let textBox: UIWidget = {
+    drag: () => { },
+    resize: ()=>{}
+}
+
+// <===LITERAL===>
+
+// let quantity: number; too broad defined
+// Literals define exact, specific values
+
+// let quantity: 50 = 51; error, but if combined with union operator now it can be either 50 or 100:
+let quantity: 50 | 100 = 100;
+
+type Quantity = 50 | 100;
+let quantity2: Quantity = 100;
+
+// doesn't have to be numbers
+
+type Metric = 'cm' | 'inch';
